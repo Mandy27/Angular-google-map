@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app='AngularMap'>
+<head lang="en">
+<meta charset="UTF-8">
+	<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js'></script>
+	<script src='controllers/mapcontroller.js'></script>
+	<script src='directives/googlemapdirective.js'></script>
+	<script src='http://maps.google.cn/maps/api/js?sensor=false'></script>
+	<!--<script src='js/angular-google-maps.min.js'></script>
+	<script src='js/lodash.min.js'></script>-->
+	<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+	<title>User Input</title>
+</head>
+<body ng-controller="MapController">
+		<!--<div class="listContainer">
+			<label for="" class="listLabel">Choose car: </label>
+			<select class="menu" name="cars" ng-model="selectedCar">
+			  <option value="all" selected>All</option>
+			  <option value="truck">Truck</option>
+			  <option value="sedan">Sedan</option>
+			  <option value="van">Van</option>
+			  <option value="motorcycle">Motorcycle</option>
+			</select>
+		</div>
+		<ui-gmap-google-map center='map.center' zoom='map.zoom'>
+			<ui-gmap-marker coords="marker.coords" idkey="marker.id">
+        	</ui-gmap-marker>
+		</ui-gmap-google-map>-->
+		<mygmap center='map.center' zoom='map.zoom'></mygmap>
+</body>
+</html>

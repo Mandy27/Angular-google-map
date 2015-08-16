@@ -1,0 +1,27 @@
+.angular-google-map-container { 
+	height: 740px; 
+	z-index: 1
+}
+
+#map {
+	height: 740px; 
+	color: black;
+}
+
+/*body{
+	text-align: center;
+}
+.listContainer{
+	position: absolute;
+	display: inline-block;
+	background-color: #FFFFFF;
+	padding: 0.5em;
+	margin-top: 0.5em;
+	z-index: 2;
+}
+.menu{
+	position: relative;
+}
+.listLabel{
+	position: relative;
+}*/
