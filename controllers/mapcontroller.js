@@ -1,5 +1,7 @@
-var myApp = angular.module('AngularMap', ['uiGmapgoogle-maps']);
-//var myApp = angular.module('AngularMap', ['AngularMapDirective']);
+//var myApp = angular.module('AngularMap', ['uiGmapgoogle-maps']);
+
+var myApp = angular.module('AngularMap', ['AngularMapDirective']);
+
 myApp.controller('MapController', ['$scope','$interval', function($scope, $interval) {	
 	var carArr = [{
 		id: 1,
@@ -25,7 +27,7 @@ myApp.controller('MapController', ['$scope','$interval', function($scope, $inter
 		center: { latitude: 32.867881, longitude: -117.212951 }, 
 		zoom: 14 
 	};
-	$scope.markers = [];
+	$scope.markers = carArr;
 	
 	$scope.$watch("selectCar",function(){
 		if($scope.selectCar == "truck") {
@@ -59,14 +61,4 @@ myApp.controller('MapController', ['$scope','$interval', function($scope, $inter
 		    }
     	}
   	},1000);
-	function showAllMarkers(){
-		for(var i = 0; i < $scope.markers.length; i++){
-    		$scope.markers[i].options.visible = true;
-    	}
-	}
-    function hideAllMarkers() {
-    	for(var i = 0; i < $scope.markers.length; i++){
-    		$scope.markers[i].options.visible = false;
-    	}
-    }
 }]);

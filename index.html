@@ -4,11 +4,16 @@
 <meta charset="UTF-8">
 	<script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.min.js'></script>
 	<script src='controllers/mapcontroller.js'></script>
-	<!--<script src='directives/googlemapdirective.js'></script>-->
 	<script src='http://maps.google.cn/maps/api/js?sensor=false'></script>
-	<script src='js/angular-google-maps.min.js'></script>
-	<script src='js/lodash.min.js'></script>
 	<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+
+	<!-- NOTE: My own directive-->
+	<script src='directives/googlemapdirective.js'></script>
+
+	<!-- NOTE: Angular-google-map directive library -->
+	<!--<script src='js/angular-google-maps.min.js'></script>
+	<script src='js/lodash.min.js'></script> -->
+
 	<title>User Input</title>
 </head>
 <body ng-controller="MapController">
@@ -22,10 +27,13 @@
 			  <option value="motorcycle">Motorcycle</option>
 		</select>
 	</form>
-	<ui-gmap-google-map center='map.center' zoom='map.zoom'>
+	<!-- USING Angular-google-map directive-->
+	<!--<ui-gmap-google-map center='map.center' zoom='map.zoom'>
 		<ui-gmap-marker coords="marker.coords" idkey="marker.id" ng-repeat="marker in markers" options="marker.options">
        	</ui-gmap-marker>
-	</ui-gmap-google-map>
-	<!--<mygmap center='map.center' zoom='map.zoom'></mygmap>-->
+	</ui-gmap-google-map>-->
+
+	<!-- USING My own directive -->
+	<mygmap center='map.center' zoom='map.zoom' markers='markers'></mygmap>
 </body>
 </html>
