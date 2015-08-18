@@ -32,23 +32,13 @@ myApp.directive('mygmap',['$interval',function($interval){
 		initializeMap();
 
 		// Update marker position
-		$interval(function () {
-			markerArr.forEach(function(item){			//Remove all markers   NEED better solution
-				item.setMap(null);
-			});
-			$scope.markers.forEach(function(marker){	// Create markers with new location
-				var myLatLng = {
-					lat: marker.coords.latitude,
-					lng: marker.coords.longitude
+		$interval(function () {				//Compare markers in $scope and actual markers on google map
+			for(var i = 0; i < $scope.markers.length; i++){
+				if($scope.markers[i].options.visible != markerArr[i].visible){
+					markerArr[i].visible = $scope.markers[i].options.visible
 				};
-				var marker = new google.maps.Marker({
-					id: marker.id,
-    				position: myLatLng,
-    				options: marker.options,
-    				map: map,
-  				});
-  				markerArr.push(marker);
-			});
+				markerArr[i].setPosition(new google.maps.LatLng( $scope.markers[i].coords.latitude, $scope.markers[i].coords.longitude));
+			}
   		},1000);
 	}
 	return {
