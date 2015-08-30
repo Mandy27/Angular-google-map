@@ -1,50 +1,68 @@
 //var myApp = angular.module('AngularMap', ['uiGmapgoogle-maps']);
 var myApp = angular.module('AngularMap', ['AngularMapDirective']);
 myApp.controller('MapController', ['$scope','$interval', function($scope, $interval) {	
+	$scope.selectCar="All";
+	$scope.selectSize="All";
+	$scope.tableHeaders=["Title","Size","Latitude","Longtitude"];
 	$scope.map = { 
 		center: { latitude: 32.867881, longitude: -117.212951 }, 
-		zoom: 14 
+		zoom: 13 
 	};
 	$scope.markers = [{
 		id: 1,
+		title: "Truck",
+		size: "large",
 		coords: { latitude: 32.867881, longitude: -117.22 },
-		options: { visible: false}
+		options: { visible: true}
 	},
 	{
 		id: 2,
+		title: "Sedan",
+		size: "small",
 		coords: { latitude: 32.868, longitude: -117.23 },
-		options: { visible: false }
+		options: { visible: true }
 	},
 	{
 		id: 3,
+		title: "Van",
+		size: "medium",
 		coords: { latitude: 32.87, longitude: -117.21 },
-		options: { visible: false }
+		options: { visible: true }
 	},
 	{
 		id: 4,
+		title: "Motorcycle",
+		size: "xsmall",
 		coords: { latitude: 32.869, longitude: -117.21 },
-		options: { visible: false }
+		options: { visible: true }
 	}];
-	
-	$scope.$watch("selectCar",function(){
-		if($scope.selectCar == "truck") {
-			hideAllMarkers();
-			$scope.markers[0].options.visible = true;
+	$scope.$watch("[selectCar, selectSize]",function(){
+		if($scope.selectCar== "All" && $scope.selectSize == "All"){
+			showAllMarkers();
 		}
-		else if($scope.selectCar == "sedan") {
+		else if ($scope.selectCar== "All"){
 			hideAllMarkers();
-			$scope.markers[1].options.visible = true;
+			$scope.markers.forEach(function(car){
+				if(car.size == $scope.selectSize){
+					car.options.visible = true;
+				}
+			});
 		}
-		else if($scope.selectCar == "van") {
+		else if($scope.selectSize == "All"){
 			hideAllMarkers();
-			$scope.markers[2].options.visible = true;
-		}
-		else if($scope.selectCar == "motorcycle") {
-			hideAllMarkers();
-			$scope.markers[3].options.visible = true;
+			$scope.markers.forEach(function(car){
+				if(car.title == $scope.selectCar){
+					car.options.visible = true;
+				}
+			});
 		}
 		else {
-			showAllMarkers();
+			hideAllMarkers();
+			$scope.markers.forEach(function(car){
+				if(car.title == $scope.selectCar && car.size == $scope.selectSize){
+					car.options.visible = true;
+				}
+			});
 		}
 	});
     $interval(function () {

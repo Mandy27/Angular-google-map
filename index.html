@@ -17,16 +17,21 @@
 	<title>User Input</title>
 </head>
 <body ng-controller="MapController">
-	<form class="listContainer" >
+	<form>
 	    <label for="selectCar"> Choose car: </label>
-	    <select name="selectCar" ng-model="selectCar">
-			  <option value="">All</option>
-			  <option value="truck">Truck</option>
-			  <option value="sedan">Sedan</option>
-			  <option value="van">Van</option>
-			  <option value="motorcycle">Motorcycle</option>
+	   	<select name="selectCar" ng-model="selectCar">
+			<option value="All" selected>All</option>
+			<option ng-repeat="marker in markers" value="{{marker.title}}">{{marker.title}}</option>
 		</select>
 	</form>
+	<form>
+	    <label for="selectSize"> Choose size: </label>
+	    <select name="selectSize" ng-model="selectSize">
+			<option value="All">All</option>
+			<option ng-repeat="marker in markers" value="{{marker.size}}">{{marker.size}}</option>
+		</select>
+	</form>
+
 	<!-- USING Angular-google-map directive-->
 	<!--<ui-gmap-google-map center='map.center' zoom='map.zoom'>
 		<ui-gmap-marker coords="marker.coords" idkey="marker.id" ng-repeat="marker in markers" options="marker.options">
@@ -35,5 +40,17 @@
 
 	<!-- USING My own directive -->
 	<mygmap center='map.center' zoom='map.zoom' markers='markers'></mygmap>
+
+	<table>
+		<tr>
+			<th ng-repeat="title in tableHeaders">{{title}}</th>
+		</tr>
+		<tr ng-repeat="marker in markers" ng-class="marker.options.visible ? 'showRow' : 'hideRow'">
+			<td>{{ marker.title }}</td>
+		    <td>{{ marker.size }}</td>
+		    <td>{{ marker.coords.latitude }}</td>
+		    <td>{{ marker.coords.longitude }}</td>
+		</tr>
+	</table>
 </body>
 </html>
